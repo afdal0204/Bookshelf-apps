@@ -122,13 +122,17 @@ formInputBuku.addEventListener("submit", function (event) {
     }
 });
 
-const formPencarianBuku = document.getElementById("searchBook");
-formPencarianBuku.addEventListener("submit", function (event) {
+document.getElementById("searchBook").addEventListener("submit", function (event) {
     event.preventDefault();
-
-    const authorBuku = document.getElementById("searchBookAuthor").value;
-
-    if (event.submitter.id == "searchSubmit") {
-        cariBukuByAuthor(authorBuku);
+    const searchBook = document
+      .getElementById("searchBookTitle")
+      .value.toLowerCase();
+    const bookList = document.querySelectorAll(".book_item > h3");
+    for (const book of bookList) {
+      if (book.innerText.toLowerCase().includes(searchBook)) {
+        book.parentElement.style.display = "block";
+      } else {
+        book.parentElement.style.display = "none";
+      }
     }
-});
+  });
